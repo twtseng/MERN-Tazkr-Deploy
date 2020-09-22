@@ -14,9 +14,10 @@ export default () => {
       <Router>
         <Home path="/"/>
         <Login path="/login"/>
-        <Profile path="/profile"/>
-        <Board path="/board"/>
+        <Profile path="/profile/:id"/>
+        <Board path="/board/:id"/>
       </Router>
     </div>
   );
 }
+

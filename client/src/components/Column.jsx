@@ -1,4 +1,4 @@
-import { Card,CardContent,Typography,Button,CardActions, CardHeader } from '@material-ui/core';
+import { Card,CardContent,Button,CardActions, CardHeader } from '@material-ui/core';
 import React from 'react';
 import Task from './Task';
 export default ({name,tasks,locked}) => {
