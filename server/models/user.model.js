@@ -1,15 +1,10 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-    firstName : {
+    username : {
         type: String,
-        required: [true,"First name is required"],
-        minlength: [3,"First name must be at least 3 characters"],
-    },
-    lastName : {
-        type: String,
-        required: [true,"Last name is required"],
-        minlength: [3,"Last name must be at least 3 characters"]
+        required: [true,"username is required"],
+        minlength: [3,"username must be at least 3 characters"],
     },
     email : {
         type: String,
@@ -20,10 +15,13 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: ""
     },
-    passwordHash = {
+    oauth_source: {
         type: String,
-        required: [true,"Password is required"],
-        minlength: [8,"Password must be at least 8 characters"]
+        required: [true, "oauth_source field is required"]
+    },
+    oauth_id: {
+        type: String,
+        required: [true, "oauth_id field is required"]
     },
     avatar = {
         type: String,
