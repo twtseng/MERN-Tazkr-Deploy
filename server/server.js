@@ -7,9 +7,9 @@ const port = 8000;
 
 require('./config/mongoose.config');
 
-app.use(cors(),express.urlencoded({extended:true}),express.json(),passport.initialize());
+app.use(cors(),express.urlencoded({extended:true}),express.json(),passport.initialize(),passport.session());
 app.use(session({
-    secret: "jhefkjwrehlgwkjgwergjwerlgwejg",
+    secret: "secret",
     saveUninitialized: true,
     resave: true
 }));

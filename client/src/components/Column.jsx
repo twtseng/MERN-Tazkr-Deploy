@@ -6,7 +6,7 @@ export default ({name,tasks,locked}) => {
     <Card style={{margin:"1rem"}}>
         <CardHeader title={name}/>
         <CardContent>
-            {tasks && tasks.map(task => <Task name={task.name}/>)}
+            {tasks && tasks.map((task,i) => <Task key={i} name={task.name}/>)}
         </CardContent>
         <CardActions>
             <Button style={{margin:"auto"}} size="large">Add Task</Button>

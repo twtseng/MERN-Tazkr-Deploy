@@ -3,9 +3,9 @@ export default ({socket,provider}) => {
     const [user,setUser] = useState({});
 
     useEffect(() => {
-        socket.on(provider,user => {
-            setUser({user});
-            console.log(user);
+        socket.on(provider,resp => {
+            setUser({resp});
+            console.log(resp,user);
         });
     },[]);
 
