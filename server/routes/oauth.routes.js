@@ -8,7 +8,6 @@ const facebookAuth = passport.authenticate("facebook");
 const githubAuth = passport.authenticate("github");
 
 const addSocketIdtoSession = (req,res,next) => {
-    //console.log(req);
     req.session.socketId = req.query.socketId;
     next();
 }
