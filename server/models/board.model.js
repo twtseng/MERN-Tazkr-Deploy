@@ -12,7 +12,6 @@ const BoardSchema = new mongoose.Schema({
         type: [{
             type:Column
         }],
-        //validate: [val => val.length <= 3,'Pets can have at most 3 skills']
     },
     users : {
         type: [{

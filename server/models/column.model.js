@@ -12,7 +12,6 @@ const ColumnSchema = new mongoose.Schema({
         type: [{
             type:Task
         }],
-        //validate: [val => val.length <= 3,'Pets can have at most 3 skills']
     },
     locked : {
         type: Boolean,
