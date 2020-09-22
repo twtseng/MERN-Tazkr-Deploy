@@ -1,27 +1,25 @@
 const mongoose = require('mongoose');
-const Board = require('./board.model');
-const Task = require('./task.model');
-const User = require('./user.model');
 
 const ColumnSchema = new mongoose.Schema({
     Name : {
         type: String,
         default: "Column Name"
     },
-    tasks : {
-        type: [{
-            type:Task
-        }],
-    },
+    tasks : [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Task"
+    }],
     locked : {
         type: Boolean,
         default: false
     },
     board : {
-        type:Board
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Board"
     },
     updatedBy: {
-        type: User
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     },
     archived : {
         type: Boolean,

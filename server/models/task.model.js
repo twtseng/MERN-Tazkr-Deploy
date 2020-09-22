@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const User = require('./user.model');
-const Column = require('./user.model');
 
 const TaskSchema = new mongoose.Schema({
     Name : {
@@ -16,13 +14,17 @@ const TaskSchema = new mongoose.Schema({
         default: 0
     },
     assignedUser: {
-        type: User
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     },
     column: {
-        type: Column
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Column"
     },
-    dueDate: {
-        type: Date
+    dueDate: Date,
+    archived: {
+        type: Boolean,
+        default: false
     }
 }, {timestamps : true});
 

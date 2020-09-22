@@ -23,7 +23,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [true, "oauth_id field is required"]
     },
-    avatar = {
+    avatar: {
         type: String,
         default: "https://rpg-cify0074508w.netdna-ssl.com/wp-content/uploads/2020/02/service_default_avatar_182956.png"
     }
