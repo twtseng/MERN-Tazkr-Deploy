@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const Column = require('./column.model');
-const User = require('./user.model');
 
 const BoardSchema = new mongoose.Schema({
     Name : {
@@ -8,21 +6,21 @@ const BoardSchema = new mongoose.Schema({
         required: [true,"Board name is required"],
         minlength: [3,"Board name must be at least 3 characters"],
     },
-    columns : {
-        type: [{
-            type:Column
-        }],
-    },
-    users : {
-        type: [{
-            type:User
-        }]
-    },
+    columns : [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Column"
+    }],
+    users : [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }],
     createdBy : {
-        type:User
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     },
     updatedBy : {
-        type:User
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     },
     archived : {
         type: Boolean,
