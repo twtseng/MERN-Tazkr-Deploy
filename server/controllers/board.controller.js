@@ -1,4 +1,5 @@
 const { Board } = require('../models/board.model');
+const { Column } = require('../models/column.model');
 
 const handleResponse = (err,result,resp) => err ? resp.status(400).json(err) : resp.json(result);
 
@@ -21,7 +22,13 @@ module.exports = {
     deleteBoard : async (req,resp) => {
         await Board.findOneAndDelete({_id:req.params.id}, (err,result) => handleResponse(err,result,resp));
     },
-    addToBoard : async (req,resp) => {
-        await Board.findOneAndUpdate({_id:req.params.id}, {$push: req.body}, {new:true}, (err,result) => handleResponse(err,result,resp));
+    addColumnToBoard : async (req,resp) => {
+        try {
+            const newColumn = await Column.create(req.body);
+            const updatedBoard = await Board.findOneAndUpdate({_id:req.params.id}, {$push: { columns: newColumn }}, {new:true});
+            resp.json(updatedBoard);
+        } catch (err) {
+            resp.status(400).json(err);
+        }
     }
 }

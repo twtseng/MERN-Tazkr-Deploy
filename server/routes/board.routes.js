@@ -1,4 +1,4 @@
-const {getAllBoards,getSingleBoard,createBoard,updateBoard,deleteBoard,addToBoard} = require('../controllers/board.controller');
+const {getAllBoards,getSingleBoard,createBoard,updateBoard,deleteBoard,addColumnToBoard} = require('../controllers/board.controller');
 
 module.exports = app => {
     app.get('/api/boards', getAllBoards);
@@ -6,5 +6,5 @@ module.exports = app => {
     app.post('/api/boards/create', createBoard);
     app.put('/api/boards/:id/update', updateBoard);
     app.delete('/api/boards/:id/delete', deleteBoard);
-    app.patch('/api/boards/:id/add', addToBoard);
+    app.patch('/api/boards/:id/addColumnToBoard', addColumnToBoard);
 }

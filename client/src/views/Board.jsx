@@ -17,7 +17,7 @@ export default ({id}) => {
 
     const addColumn = e => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/columns/create',{
+        axios.patch(`http://localhost:8000/api/boards/${id}/addColumnToBoard`,{
             name:"Name",
             locked:false,
             tasks:[],
@@ -25,7 +25,15 @@ export default ({id}) => {
         })
         .then(resp => refreshBoard())
         .catch(err => console.log(err));
-        // setColumns([...columns,{name:"Name",locked:false,tasks:[]}]);
+    }
+
+    const deleteColumn = columnId => {
+        board.columns = board.columns.filter(col => col._id !== columnId);
+        console.log(`deleteColumn columnId:${columnId}`);
+        console.log(`deleteColumn updatedObject:${board}`);
+        axios.put(`http://localhost:8000/api/boards/${id}/update`,board)
+        .then(resp => refreshBoard())
+        .catch(err => console.log(err));
     }
 
     useEffect(() => {
@@ -37,7 +45,7 @@ export default ({id}) => {
             <h1>Board</h1>
             <button onClick={addColumn}>Add Column</button>
             <div style={{display:"flex",padding:20}}>
-                {board.columns && board.columns.map((column) => <Column key={column._id} column={column} refreshBoard={refreshBoard} />)}
+                {board.columns && board.columns.map((column) => <Column key={column._id} column={column} refreshBoard={refreshBoard} deleteColumn={() => deleteColumn(column._id)}/>)}
             </div>
         </DndProvider>
     )
