@@ -2,9 +2,14 @@ import { Card, CardContent, Typography } from '@material-ui/core';
 import React from 'react';
 import { useDrag } from 'react-dnd';
 
-export default ({task}) => {
+export default ({task, column, refreshColumn}) => {
     const [{isDragging}, drag] = useDrag({
-        item: { type: "TASK", name: task.name },
+        item: { 
+            type: "TASK", 
+            task: task,
+            fromColumn: column,
+            fromRefreshColumn: refreshColumn 
+        },
         collect: monitor => ({
           isDragging: !!monitor.isDragging(),
         }),

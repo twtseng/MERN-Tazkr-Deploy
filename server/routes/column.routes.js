@@ -1,4 +1,4 @@
-const {getAllColumns,getSingleColumn,createColumn,updateColumn,deleteColumn,addToColumn} = require('../controllers/column.controller');
+const {getAllColumns,getSingleColumn,createColumn,updateColumn,deleteColumn,addTaskToColumn,removeTaskFromColumn,moveTask} = require('../controllers/column.controller');
 
 module.exports = app => {
     app.get('/api/columns', getAllColumns);
@@ -6,5 +6,7 @@ module.exports = app => {
     app.post('/api/columns/create', createColumn);
     app.put('/api/columns/:id/update', updateColumn);
     app.delete('/api/columns/:id/delete', deleteColumn);
-    app.patch('/api/columns/:id/add', addToColumn);
+    app.patch('/api/columns/:id/addTaskToColumn', addTaskToColumn);
+    app.patch('/api/columns/:id/removeTaskFromColumn/:taskid', removeTaskFromColumn);
+    app.patch('/api/columns/moveTask/:taskid/:fromcolumnid/:tocolumnid', moveTask);
 }
