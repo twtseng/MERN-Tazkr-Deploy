@@ -1,13 +1,18 @@
 import React,{useState,useEffect} from 'react'
 export default ({socket,provider}) => {
-    const [user,setUser] = useState({});
+    const [user,setUser] = useState();
+    const [popup,setPopup] = useState();
 
     useEffect(() => {
         socket.on(provider,resp => {
-            setUser({resp});
-            console.log(resp,user);
+            setUser(resp);
+            console.log(resp);
         });
     },[]);
+
+    useEffect(() => {
+        user && popup.close();
+    },[user]);
 
     const openPopup = () => {
         const width=600,height=600;
@@ -24,12 +29,12 @@ export default ({socket,provider}) => {
 
     const startAuth = e => {
         e.preventDefault();
-        openPopup();
+        setPopup(openPopup());
     }
 
     return (
         <div>
-            <button onClick={e => startAuth(e)}>{provider}</button>
+            {!user ? <button onClick={e => startAuth(e)}>{provider}</button> : <p>{user.name}</p>}
         </div>
     );
 }
