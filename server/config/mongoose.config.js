@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const db = 'tazkr';
+const db = 'mongodb+srv://tazkr_admin:b5217dfd-023c-48b1-b5d1-67474f57bd39@cluster0.06dtp.azure.mongodb.net/tazkr';
 
-mongoose.connect(`mongodb://localhost/${db}`, {
+mongoose.connect(db, {
     useNewUrlParser:true,
     useUnifiedTopology:true,
     useFindAndModify:false,

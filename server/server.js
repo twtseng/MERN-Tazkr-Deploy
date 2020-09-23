@@ -3,7 +3,7 @@ const cors = require('cors');
 const app = express();
 const passport = require('passport');
 const session = require('express-session');
-const port = 8000;
+//const port = 8000;
 
 require('./config/mongoose.config');
 
@@ -21,7 +21,15 @@ require('./routes/task.routes')(app);
 require('./routes/column.routes')(app);
 require('./routes/oauth.routes')(app);
 
-const server = app.listen(port,() => console.log(`Listening on port ${port}`));
+app.set('port', process.env.PORT || 8000);
+console.log("++++++++++++++++" + app.get('port'));
+app.use(express.static('../client/build'));
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build",     
+    "index.html"));
+ });
+
+const server = app.listen(app.get('port'),() => console.log(`Listening on port ${app.get('port')}`));
 const io = require("socket.io")(server);
 app.set('io',io);
 
